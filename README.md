@@ -11,5 +11,5 @@ capturas de pantalla del funcionamiento del programa:
 
 en este ejemplo se utilizó la función x⁴ con su derivada 4x³
 
-<img src="https://github.com/JuanCaceffo/TP_SecanteAndNewton_MN/ejx^4.png" />
+<img src="https://github.com/JuanCaceffo/TP_SecanteAndNewton_MN/ejx⁴.png" />
 
