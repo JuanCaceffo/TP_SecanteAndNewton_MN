@@ -1,16 +1,13 @@
-import math
-import numpy
-
 def f(x):
     return x**4
 def f1(x):
     return 4*x**3
-def impresionDePasos(x1,x,pasos):
+def printSteps(x1,x,pasos):
     print (f"paso : {pasos} -------- [x1,x] = {round(abs(x1-x),3)} -------- raizActual = {round(x1,3)} -------- f(raizActual) = {round(f(x1),3)}")
 
 def newton(x,epsilon):
     pasos = 0
-    #anidamos funcion par apoder utilizar variables no locales
+    #anidamos funcion para poder utilizar variables no locales
     def secante():
         try:
             return x1 - ((f(x1)*(x1-x))/(f(x1)-f(x)))
@@ -28,7 +25,7 @@ def newton(x,epsilon):
             break
         x = secante()
         pasos += 1 
-        impresionDePasos(x,x1,pasos)
+        printSteps(x,x1,pasos)
     return (x1)
     
 def dataEntry():
