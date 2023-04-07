@@ -29,9 +29,9 @@ def newton(x,epsilon):
     return (x1)
     
 def dataEntry():
-    x = float(input("ingrese un numero cercano a la raiz buscada"))
+    x = float(input("ingrese un numero cercano a la raiz buscada: "))
     while (True):
-        epsilon = float(input("ingrese un intervalo de error aceptado"))  
+        epsilon = float(input("ingrese un intervalo de error aceptado: "))  
         if(epsilon > 0):
             break
         else:
