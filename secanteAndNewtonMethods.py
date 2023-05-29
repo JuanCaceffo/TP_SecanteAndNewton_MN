@@ -1,10 +1,49 @@
 import math as m
+import matplotlib.pyplot as plt
+import numpy as np
+
 def f(x):
-    return m.sin(m.sqrt(((m.e**x)+3))/2)
+    return m.exp(-x)-m.sin(x)
 def f1(x):
-    return (m.e*m.cos(m.sqrt(((m.e**x)+3))/2))/(4*m.sqrt(((m.e**x)+3)))
-def printSteps(x1,x,pasos):
-    print (f"paso : {pasos} -------- [x1,x] = {round(abs(x1-x),3)} -------- raizActual = {round(x1,3)} -------- f(raizActual) = {round(f(x1),3)}")
+    return -m.cos(x)-m.exp(-x)
+
+def decimal_truncate(numero, decimales):
+    if (decimales < 0): raise Exception("el N° de decimales a truncar debe ser positivo")
+    factor = 10.0 ** decimales
+    return m.trunc(numero * factor) / factor
+
+def grafico(numeroInicial,raizAproximada):
+    DOMINIO = 4
+    #genero datos para el dominio de x
+    x_values = np.arange(numeroInicial-DOMINIO,numeroInicial+DOMINIO,step=0.3)
+    #genero datos para el domino de y
+    y_values = ([f(x) for x in x_values])
+    #ploteo el grafico
+    plt.plot(x_values,y_values)
+    # Agregar el eje de abscisas
+    plt.axhline(y=0, color='black', linestyle='--')
+    # Agregar el eje de ordenadas
+    plt.axvline(x=0, color='black', linestyle='--')
+    #agrego puntos calulados 
+    plt.scatter(raizAproximada,f(raizAproximada),c="red")
+    #agrego labels
+    plt.xlabel('x')
+    plt.ylabel('f(x)')
+    plt.title('Grafico aproximado de la funcion')
+    #muestro el grafico
+    plt.show()
+
+def presentacion():
+    print("\n\n")
+    print("------------------------------------------------------------------------------")
+    print ("Metodo Newton-Secante aproxima raices de funicones")
+    print("------------------------------------------------------------------------------")
+    print ("Integrantes: Alejo Menini, Juan Caceffo, Sol Lopez, Pablo Foglia")
+    print("------------------------------------------------------------------------------")
+    print("\n\n")
+
+def printSteps(x1,pasos):
+    print (f"\npaso : {pasos} -------- raizActual = {decimal_truncate(x1,RANGO_TOLERABLE.stop)} -------- f(raizActual) = {decimal_truncate(f(x1),RANGO_TOLERABLE.stop)}\n")
 
 #x = valor inicial
 #tolerancia = valor del intervalo como temrino de parada de convergencia
@@ -28,13 +67,14 @@ def newton(x,tolerancia):
             break
         x = secante()
         pasos += 1 
-        printSteps(x,x1,pasos)
+        printSteps(x,pasos)
     return (x1)
     
 def dataEntry():
-    x = float(input("ingrese un numero cercano a la raiz buscada: "))
+    x = float(input("ingrese un numero del domino de x cercano a la raiz buscada: "))
     # Pedir al usuario la cantidad de decimales correctos
     #rango de exactitud de decimales posible
+    global RANGO_TOLERABLE
     RANGO_TOLERABLE = range(1,11)
     exactitud = int(input(f"ingrese la cantidad de decimales correctos que desea, (deben estar dentro del rango ({RANGO_TOLERABLE.start}..{RANGO_TOLERABLE.stop-1}): "))
     #verificar que la exactitud ingresada por el usuario este detro del rango
@@ -52,8 +92,10 @@ def dataEntry():
     return (x,tolerancia,exactitud)
 
 def main():
-    (x,epsilon,exactitud) = dataEntry()
+    presentacion()
+    (x,epsilon,exactitud)= dataEntry()
     raiz = newton(x,epsilon)
-    print(f"raiz aproximada con una exactitud de {exactitud} decimales = {round(raiz,exactitud)}")
-
+    print(f"raiz aproximada con una exactitud de {exactitud} decimales = {decimal_truncate(raiz,exactitud)}")
+    print(f"funcion evaluada en raiz aproximada sin truncar resultado: f({decimal_truncate(raiz,exactitud)}) = {(f(round(raiz,exactitud)))}")
+    grafico(x,raiz)
 main()  
