@@ -4,6 +4,7 @@ import numpy as np
 
 def f(x):
     return m.exp(-x)-m.sin(x)
+
 def f1(x):
     return -m.cos(x)-m.exp(-x)
 
@@ -39,6 +40,8 @@ def presentacion():
     print ("Metodo Newton-Secante aproxima raices de funicones")
     print("------------------------------------------------------------------------------")
     print ("Integrantes: Alejo Menini, Juan Caceffo, Sol Lopez, Pablo Foglia")
+    print("------------------------------------------------------------------------------")
+    print("cursada: 2023 cuatrimestre 1")
     print("------------------------------------------------------------------------------")
     print("\n\n")
 
