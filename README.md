@@ -9,5 +9,5 @@ El lenguaje de programación seleccionado es python 3.10.6, las funciones a las 
 por defecto tiene seteada la funcion función e^(-x)-sin(x) con su derivada -cos(x)-e^(-x)
 
 foto ej:
-<img src="https://github.com/JuanCaceffo/TP_SecanteAndNewton_MN/blob/main/ej.png" />
+<img src="https://github.com/JuanCaceffo/TP_SecanteAndNewton_MN/blob/main/ej1.png" />
 
